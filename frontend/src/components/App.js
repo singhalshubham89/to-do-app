@@ -1,17 +1,24 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import Dashboard from "./todos/Dashboard";
+import Header from "./layout/Header";
 import { Provider } from "react-redux";
 import store from "../store";
+import history from "../history";
+import TodoDelete from "./todos/TodoDelete";
 
 class App extends Component {
   render() {
     return (
-      //   <div>
-      //     <h1>TO DO Application</h1>
-      //   </div>
       <Provider store={store}>
-        <Dashboard />
+        <Router history={history}>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/delete/:id" component={TodoDelete} />
+          </Switch>
+        </Router>
       </Provider>
     );
   }
