@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_TODOS, GET_TODO, ADD_TODO, DELETE_TODO } from "./types";
+import { GET_TODOS, GET_TODO, ADD_TODO, DELETE_TODO, EDIT_TODO } from "./types";
 import { reset, formValues } from "redux-form";
 import history from "../history";
 
@@ -13,11 +13,11 @@ export const getTodos = () => async (dispatch) => {
 };
 
 //GET TODO
-export const getTodo = (id) => async (dispath) => {
+export const getTodo = (id) => async (dispatch) => {
   const res = await axios.get(`/api/todos/${id}/`);
   dispatch({
     type: GET_TODO,
-    payload: id,
+    payload: res.data,
   });
 };
 
@@ -37,6 +37,16 @@ export const deleteTodo = (id) => async (dispatch) => {
   dispatch({
     type: DELETE_TODO,
     payload: id,
+  });
+  history.push("/");
+};
+
+//EDIT TODO
+export const editTodo = (id, formValues) => async (dispatch) => {
+  const res = await axios.patch(`/api/todos/${id}/`, formValues);
+  dispatch({
+    type: EDIT_TODO,
+    payload: res.data,
   });
   history.push("/");
 };

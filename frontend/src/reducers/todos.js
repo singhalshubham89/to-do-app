@@ -1,5 +1,11 @@
 import _ from "lodash";
-import { GET_TODOS, GET_TODO, ADD_TODO, DELETE_TODO } from "../actions/types";
+import {
+  GET_TODOS,
+  GET_TODO,
+  ADD_TODO,
+  DELETE_TODO,
+  EDIT_TODO,
+} from "../actions/types";
 import { startAsyncValidation } from "redux-form";
 //Child Redicer
 export default (state = {}, action) => {
@@ -11,6 +17,7 @@ export default (state = {}, action) => {
       };
     case GET_TODO:
     case ADD_TODO:
+    case EDIT_TODO:
       return {
         ...state,
         [action.payload.id]: action.payload,
