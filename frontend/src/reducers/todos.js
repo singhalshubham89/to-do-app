@@ -5,6 +5,7 @@ import {
   ADD_TODO,
   DELETE_TODO,
   EDIT_TODO,
+  EDIT_CHECKED,
 } from "../actions/types";
 import { startAsyncValidation } from "redux-form";
 //Child Redicer
@@ -18,6 +19,7 @@ export default (state = {}, action) => {
     case GET_TODO:
     case ADD_TODO:
     case EDIT_TODO:
+    case EDIT_CHECKED:
       return {
         ...state,
         [action.payload.id]: action.payload,

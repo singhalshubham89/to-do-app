@@ -1,5 +1,12 @@
 import axios from "axios";
-import { GET_TODOS, GET_TODO, ADD_TODO, DELETE_TODO, EDIT_TODO } from "./types";
+import {
+  GET_TODOS,
+  GET_TODO,
+  ADD_TODO,
+  DELETE_TODO,
+  EDIT_TODO,
+  EDIT_CHECKED,
+} from "./types";
 import { reset, formValues } from "redux-form";
 import history from "../history";
 
@@ -49,4 +56,14 @@ export const editTodo = (id, formValues) => async (dispatch) => {
     payload: res.data,
   });
   history.push("/");
+};
+
+//UPDATE CHECKED
+export const updateChecked = (id, formValue) => async (dispatch) => {
+  console.log(id);
+  const res = await axios.put(`/api/todos/${id}/`, formValue);
+  dispatch({
+    type: EDIT_CHECKED,
+    payload: res.data,
+  });
 };

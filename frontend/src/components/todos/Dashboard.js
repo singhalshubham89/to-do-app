@@ -6,7 +6,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="ui container">
-        <div>Todo Create Form</div>
+        <h1>Todo Create Form</h1>
         <TodoCreate />
         <TodoList />
       </div>
