@@ -4,41 +4,27 @@ import { Link } from "react-router-dom";
 import { getTodos, deleteTodo, updateChecked } from "../../actions/todos";
 
 class TodoList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      todos: [],
-    };
-    this.editChecked = this.editChecked.bind(this);
-  }
   componentDidMount() {
-    this.props.getTodos().then(() => {
-      this.setState(() => {
-        return {
-          todos: this.props.todos,
-        };
-      });
-    });
+    this.props.getTodos();
   }
 
   editChecked(id) {
-    this.setState((prevstate) => {
-      const updatetodos = prevstate.todos.map((todo) => {
-        if (todo.id === id) {
-          todo.iscompleted = !todo.iscompleted;
-          const formData = new FormData();
-          Object.keys(todo).forEach((key) => {
-            formData.append(key, todo[key]);
-          });
-          this.props.updateChecked(id, formData);
-        }
-        return todo;
-      });
-      return {
-        todos: updatetodos,
-      };
+    // this.setState((prevstate) => {
+    const updatetodos = this.props.todos.map((todo) => {
+      if (todo.id === id) {
+        todo.iscompleted = !todo.iscompleted;
+        const formData = new FormData();
+        Object.keys(todo).forEach((key) => {
+          formData.append(key, todo[key]);
+        });
+        this.props.updateChecked(id, formData);
+      }
+      return todo;
     });
+    return {
+      todos: updatetodos,
+    };
+    // });
   }
 
   render() {
@@ -53,7 +39,7 @@ class TodoList extends Component {
         className="ui very relaxed divided list"
         style={{ marginTop: "2rem" }}
       >
-        {this.state.todos.map((todo) => (
+        {this.props.todos.map((todo) => (
           <div
             className="item"
             key={todo.id}

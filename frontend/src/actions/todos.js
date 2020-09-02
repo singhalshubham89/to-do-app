@@ -60,7 +60,6 @@ export const editTodo = (id, formValues) => async (dispatch) => {
 
 //UPDATE CHECKED
 export const updateChecked = (id, formValue) => async (dispatch) => {
-  console.log(id);
   const res = await axios.put(`/api/todos/${id}/`, formValue);
   dispatch({
     type: EDIT_CHECKED,
