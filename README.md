@@ -11,3 +11,8 @@ Django + React (To Do Application)
 
 ## If want to make changes on React part
 6. Run webpack using `npm run dev`
+
+## Snapshots of Application
+![alt text](assets/images/Dashboard.png "Dashboard")
+![alt text](assets/images/DashboardApi.png "Dashboard Apis ")
+![alt text](assets/images/TodoEdit.png "TodoEdit")
